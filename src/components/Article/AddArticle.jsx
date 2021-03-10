@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { nanoid } from "nanoid";
-const AddArticle = ({ onSaveArticle }) => {
+import { articleContext } from "../../context/ArticleContextProvider";
+const AddArticle = ({}) => {
   const [article, setArticle] = useState(null);
-
+  const { saveArticle } = useContext(articleContext);
   const handleOnChange = (event) => {
     const { id, value } = event.target;
     setArticle({
@@ -14,18 +15,28 @@ const AddArticle = ({ onSaveArticle }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (article && onSaveArticle) onSaveArticle(article);
-    setArticle(null);
+    if (article && saveArticle) {
+      saveArticle(article);
+      setArticle(null);
+    }
   };
 
   return (
     <div className="add-article-container">
       <form onSubmit={onSubmit}>
         <div>
-          <input id="title" value={article?.title ?? ''} onChange={handleOnChange} />
+          <input
+            id="title"
+            value={article?.title ?? ""}
+            onChange={handleOnChange}
+          />
         </div>
         <div>
-          <textarea id="desc" value={article?.desc ?? ''} onChange={handleOnChange} />
+          <textarea
+            id="desc"
+            value={article?.desc ?? ""}
+            onChange={handleOnChange}
+          />
         </div>
         <button>提交</button>
       </form>

@@ -1,27 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import AddArticle from "../components/Article/AddArticle";
 import Article from "../components/Article/Article";
+import { articleContext } from "../context/ArticleContextProvider";
 
 const Articles = () => {
-  const [ articles, setArticles ] = useState([
-    { id: 1, title: "Article 1", desc: "article desc 1" },
-    { id: 2, title: "Article 2", desc: "article desc 2" },
-  ]);
 
-  const onSaveArticle = (article) => {
-    setArticles(prevArticles => [
-      ...prevArticles,
-      article
-    ])
-  }
-  
+  const { articles } = useContext(articleContext);
+
   return (
-    <React.Fragment>
-      {articles.map((article) => (
-        <Article key={article.id} article={article} />
-      ))}
-      <AddArticle onSaveArticle={onSaveArticle}/>
-    </React.Fragment>
+    
+      <React.Fragment>
+        {articles.map((article) => (
+          <Article key={article.id} article={article} />
+        ))}
+        <AddArticle />
+      </React.Fragment>
   );
 };
 
