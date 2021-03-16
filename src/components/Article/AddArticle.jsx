@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import { nanoid } from "nanoid";
-import { articleContext } from "../../context/ArticleContextProvider";
-const AddArticle = ({}) => {
+import { ArticleContext } from "../../context/ArticleProvider";
+import { ADD_ARTICLE } from '../../context/constant';
+
+const AddArticle = () => {
   const [article, setArticle] = useState(null);
-  const { saveArticle } = useContext(articleContext);
+  const { dispatch } = useContext(ArticleContext);
   const handleOnChange = (event) => {
     const { id, value } = event.target;
     setArticle({
@@ -15,8 +17,11 @@ const AddArticle = ({}) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (article && saveArticle) {
-      saveArticle(article);
+    if (article) {
+      dispatch({
+        type: ADD_ARTICLE,
+        article
+      })
       setArticle(null);
     }
   };

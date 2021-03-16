@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import AddArticle from "../components/Article/AddArticle";
 import Article from "../components/Article/Article";
-import { articleContext } from "../context/ArticleContextProvider";
+import { ArticleContext } from "../context/ArticleProvider";
 
 const Articles = () => {
 
-  const { articles } = useContext(articleContext);
+  const { articles } = useContext(ArticleContext);
 
   return (
     

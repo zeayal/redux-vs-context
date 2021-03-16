@@ -1,13 +1,13 @@
 import "./App.css";
 import Articles from "./containers/Articles";
-import ArticleContextProvider from './context/ArticleContextProvider';
+import ArticleProvider from './context/ArticleProvider';
 
 function App() {
   return (
     <div className="app">
-      <ArticleContextProvider>
+      <ArticleProvider>
         <Articles />
-      </ArticleContextProvider>
+      </ArticleProvider>
     </div>
   );
 }
